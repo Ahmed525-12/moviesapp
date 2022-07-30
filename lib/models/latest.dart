@@ -1,8 +1,10 @@
 
+// ignore_for_file: non_constant_identifier_names
+
 class Latest {
   bool ? adult;
-  dynamic ? backdropPath;
-  dynamic ? belongsToCollection;
+  dynamic  backdropPath;
+  dynamic  belongsToCollection;
   int ?budget;
   List<dynamic>? genres;
   String ? homepage;
@@ -12,7 +14,7 @@ class Latest {
   String ?originalTitle;
   String ?overview;
   int ?popularity;
-  dynamic? posterPath;
+  dynamic posterPath;
   List<ProductionCompanies>? productionCompanies;
   List<ProductionCountries> ?productionCountries;
   String ?releaseDate;
@@ -207,7 +209,7 @@ class ProductionCountries {
 
 class ProductionCompanies {
   int ?id;
-  dynamic? logoPath;
+  dynamic logoPath;
   String ?name;
   String ?originCountry;
 

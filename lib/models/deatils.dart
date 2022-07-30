@@ -1,7 +1,9 @@
+// ignore_for_file: non_constant_identifier_names
+
 class Deatils {
   bool? adult;
   String? backdropPath;
-  dynamic? belongsToCollection;
+  dynamic belongsToCollection;
   int? budget;
   List<Genres>? genres;
   String? homepage;
