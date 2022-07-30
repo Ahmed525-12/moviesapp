@@ -1,17 +1,20 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
-import 'package:moviesapp/screens/home/thirdScreen/genere_widget.dart';
+import 'package:moviesapp/screens/home/thirdScreen/discovery_widget.dart';
 
 import '../../../apis/api_manager.dart';
+import '../../../models/discovery.dart';
 import '../../../models/geners.dart';
 
-class ThirdScreen extends StatelessWidget {
-  const ThirdScreen({ Key? key }) : super(key: key);
+class ShowDiscovery extends StatelessWidget {
+  static const String routeName = "showdiscovery";
+  const ShowDiscovery({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return   FutureBuilder<GenersParent>(
+    Genres results = ModalRoute.of(context)!.settings.arguments as Genres;
+    return Scaffold(
+      appBar: AppBar(title: Text("${results.name}"),centerTitle: true,backgroundColor: Colors.black,),
+      body: FutureBuilder<Discovery>(
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator.adaptive());
@@ -36,31 +39,17 @@ class ThirdScreen extends StatelessWidget {
                 ),
               );
             }
-            var resultList = snapshot.data?.genres ?? [];
-            return Column(
-              children: [
-              const  Text("Browse Category"),
-                Expanded(
-                  child: GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200,
-                childAspectRatio: 3 / 2,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20),
-                    
-                    itemBuilder: (context, index) {
-                      return GenereWidget(resultList[index])
-                      
-                      ;
-                    },
-                    itemCount: resultList.length,
-                  ),
-                ),
-              ],
+            var resultList = snapshot.data?.results?? [];
+            return ListView.builder(
+               
+              itemBuilder: (context, index) {
+                return DiscoveryWidget(resultList[index]);
+              },
+              itemCount: resultList.length,
             );
           },
-          future: ApiManager.getGeners(),
-        )
-    ;
+          future: ApiManager.getDiscovery(results.id??14),
+        ),
+    );
   }
 }

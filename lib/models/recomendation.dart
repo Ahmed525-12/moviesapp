@@ -1,7 +1,9 @@
 
+// ignore_for_file: non_constant_identifier_names
+
 class Recomendation {
   int ?page;
-  List<Results>? results;
+  List<ResultsRecom>? results;
   int ?totalPages;
   int ?totalResults;
   int? status_code;
@@ -23,7 +25,7 @@ class Recomendation {
       page = json["page"];
     }
     if(json["results"] is List) {
-      results = json["results"]==null ? null : (json["results"] as List).map((e)=>Results.fromJson(e)).toList();
+      results = json["results"]==null ? null : (json["results"] as List).map((e)=>ResultsRecom.fromJson(e)).toList();
     }
     if(json["total_pages"] is int) {
       totalPages = json["total_pages"];
@@ -48,7 +50,7 @@ class Recomendation {
   }
 }
 
-class Results {
+class ResultsRecom {
   bool ?adult;
   String? backdropPath;
   List<int>? genreIds;
@@ -65,9 +67,9 @@ class Results {
   double? voteAverage;
   int ?voteCount;
 
-  Results({this.adult, this.backdropPath, this.genreIds, this.id, this.mediaType, this.title, this.originalLanguage, this.originalTitle, this.overview, this.popularity, this.posterPath, this.releaseDate, this.video, this.voteAverage, this.voteCount});
+  ResultsRecom({this.adult, this.backdropPath, this.genreIds, this.id, this.mediaType, this.title, this.originalLanguage, this.originalTitle, this.overview, this.popularity, this.posterPath, this.releaseDate, this.video, this.voteAverage, this.voteCount});
 
-  Results.fromJson(Map<String, dynamic> json) {
+  ResultsRecom.fromJson(Map<String, dynamic> json) {
     if(json["adult"] is bool) {
       adult = json["adult"];
     }

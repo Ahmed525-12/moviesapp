@@ -1,7 +1,9 @@
 
+// ignore_for_file: non_constant_identifier_names
+
 class Popular {
   int ?page;
-  List<Results>? results;
+  List<ResultsPopular>? results;
   int ?totalPages;
   int ?totalResults;
     int? status_code;
@@ -24,7 +26,7 @@ class Popular {
       page = json["page"];
     }
     if(json["results"] is List) {
-      results = json["results"]==null ? null : (json["results"] as List).map((e)=>Results.fromJson(e)).toList();
+      results = json["results"]==null ? null : (json["results"] as List).map((e)=>ResultsPopular.fromJson(e)).toList();
     }
     if(json["total_pages"] is int) {
       totalPages = json["total_pages"];
@@ -49,7 +51,7 @@ class Popular {
   }
 }
 
-class Results {
+class ResultsPopular {
   bool? adult;
   String? backdropPath;
   List<int>? genreIds;
@@ -65,9 +67,9 @@ class Results {
   double? voteAverage;
   int ?voteCount;
 
-  Results({this.adult, this.backdropPath, this.genreIds, this.id, this.originalLanguage, this.originalTitle, this.overview, this.popularity, this.posterPath, this.releaseDate, this.title, this.video, this.voteAverage, this.voteCount});
+  ResultsPopular({this.adult, this.backdropPath, this.genreIds, this.id, this.originalLanguage, this.originalTitle, this.overview, this.popularity, this.posterPath, this.releaseDate, this.title, this.video, this.voteAverage, this.voteCount});
 
-  Results.fromJson(Map<String, dynamic> json) {
+  ResultsPopular.fromJson(Map<String, dynamic> json) {
     if(json["adult"] is bool) {
       adult = json["adult"];
     }

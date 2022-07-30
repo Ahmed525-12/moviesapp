@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:moviesapp/apis/api_manager.dart';
+// ignore_for_file: file_names
 
-import '../../../models/popular.dart';
-import 'firstScreen_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:moviesapp/screens/home/firstScreen/fristlist.dart';
+import 'package:moviesapp/screens/home/firstScreen/secondlist.dart';
+import 'package:moviesapp/screens/home/firstScreen/thirdlist.dart';
+
+
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({Key? key}) : super(key: key);
@@ -15,45 +18,34 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      crossAxisAlignment: CrossAxisAlignment.start,
+            children: const[
+        Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Text("New Release",style: TextStyle(color: Colors.white,fontSize:20
+          ,fontWeight:FontWeight.bold ),),
+        ),
         Expanded(
-            child: FutureBuilder<Popular>(
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator.adaptive());
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Column(
-                  children: [
-                    const Text("something get wrong"),
-                    ElevatedButton(
-                        onPressed: () {}, child: const Text("try agian"))
-                  ],
-                ),
-              );
-            } else if (snapshot.data?.success == false) {
-              return Center(
-                child: Column(
-                  children: [
-                    Text(snapshot.data?.status_message ?? ""),
-                    ElevatedButton(
-                        onPressed: () {}, child: const Text("try agian"))
-                  ],
-                ),
-              );
-            }
-            var resultList = snapshot.data?.results ?? [];
-            return ListView.builder(
-               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return FirstScreenWidget(resultList[index]);
-              },
-              itemCount: resultList.length,
-            );
-          },
-          future: ApiManager.getPopular(),
-        ))
+         
+            child:FirstList()),
+            Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Text("Recomended",style: TextStyle(color: Colors.white,fontSize:20
+          ,fontWeight:FontWeight.bold ),),
+        ),
+              Expanded(
+                 
+            child:SecondList()),
+            Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Text("Top Rated",style: TextStyle(color: Colors.white,fontSize:20
+          ,fontWeight:FontWeight.bold ),),
+        ),
+              Expanded(
+                 
+            child:ThirdList()),
       ],
     );
   }
+  
 }

@@ -1,18 +1,18 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-class TopRated {
+class Discovery {
   int? page;
-  List<ResultsTR>? results;
+  List<ResultsDiscovery>? results;
   int? totalPages;
-  int ?totalResults;
-  int? status_code;
+  int? totalResults;
+ int? status_code;
   String? status_message;
   bool? success;
-  TopRated({this.page, this.results, this.totalPages, this.totalResults});
+  Discovery({this.page, this.results, this.totalPages, this.totalResults});
 
-  TopRated.fromJson(Map<String, dynamic> json) {
-      if (json["success"] is bool) {
+  Discovery.fromJson(Map<String, dynamic> json) {
+    if (json["success"] is bool) {
       success = json["success"];
     }
      if (json["status_message"] is String) {
@@ -25,7 +25,7 @@ class TopRated {
       page = json["page"];
     }
     if(json["results"] is List) {
-      results = json["results"]==null ? null : (json["results"] as List).map((e)=>ResultsTR.fromJson(e)).toList();
+      results = json["results"]==null ? null : (json["results"] as List).map((e)=>ResultsDiscovery.fromJson(e)).toList();
     }
     if(json["total_pages"] is int) {
       totalPages = json["total_pages"];
@@ -37,7 +37,7 @@ class TopRated {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-      data["success"] = success;
+       data["success"] = success;
         data["status_message"] = status_message;
         data["status_code"] = status_code;
     data["page"] = page;
@@ -50,25 +50,25 @@ class TopRated {
   }
 }
 
-class ResultsTR {
-  bool ?adult;
+class ResultsDiscovery {
+  bool? adult;
   String? backdropPath;
   List<int>? genreIds;
-  int? id;
+  int ?id;
   String? originalLanguage;
-  String ?originalTitle;
-  String ?overview;
-  double ?popularity;
-  String ?posterPath;
-  String ?releaseDate;
-  String ?title;
-  bool ?video;
+  String? originalTitle;
+  String? overview;
+  double? popularity;
+  String? posterPath;
+  String? releaseDate;
+  String? title;
+  bool? video;
   double? voteAverage;
   int ?voteCount;
 
-  ResultsTR({this.adult, this.backdropPath, this.genreIds, this.id, this.originalLanguage, this.originalTitle, this.overview, this.popularity, this.posterPath, this.releaseDate, this.title, this.video, this.voteAverage, this.voteCount});
+  ResultsDiscovery({this.adult, this.backdropPath, this.genreIds, this.id, this.originalLanguage, this.originalTitle, this.overview, this.popularity, this.posterPath, this.releaseDate, this.title, this.video, this.voteAverage, this.voteCount});
 
-  ResultsTR.fromJson(Map<String, dynamic> json) {
+  ResultsDiscovery.fromJson(Map<String, dynamic> json) {
     if(json["adult"] is bool) {
       adult = json["adult"];
     }

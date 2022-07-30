@@ -1,14 +1,15 @@
 
-class Geners {
+// ignore_for_file: non_constant_identifier_names
+
+class GenersParent {
   List<Genres>? genres;
   int? status_code;
   String? status_message;
   bool? success;
-  Geners({this.genres});
+  GenersParent({this.genres});
 
-  Geners.fromJson(Map<String, dynamic> json) {
-    if(json["genres"] is List) {
-           if (json["success"] is bool) {
+  GenersParent.fromJson(Map<String, dynamic> json) {
+      if (json["success"] is bool) {
       success = json["success"];
     }
      if (json["status_message"] is String) {
@@ -17,16 +18,18 @@ class Geners {
      if (json["status_code"] is int) {
       status_code = json["status_code"];
     }
+    if(json["genres"] is List) {
       genres = json["genres"]==null ? null : (json["genres"] as List).map((e)=>Genres.fromJson(e)).toList();
     }
   }
 
   Map<String, dynamic> toJson() {
+    
     final Map<String, dynamic> data = <String, dynamic>{};
-      data["success"] = success;
+    if(genres != null) {
+       data["success"] = success;
         data["status_message"] = status_message;
         data["status_code"] = status_code;
-    if(genres != null) {
       data["genres"] = genres?.map((e)=>e.toJson()).toList();
     }
     return data;
@@ -35,7 +38,7 @@ class Geners {
 
 class Genres {
   int? id;
-  String? name;
+  String ?name;
 
   Genres({this.id, this.name});
 

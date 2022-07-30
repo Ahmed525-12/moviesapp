@@ -1,6 +1,8 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
 import 'package:moviesapp/screens/home/firstScreen/firstScreen.dart';
-import 'package:moviesapp/screens/home/fourthScreen/fourthScreen.dart';
+
 import 'package:moviesapp/screens/home/secondScreen/secondScreen.dart';
 import 'package:moviesapp/screens/home/thirdScreen/thirdScreen.dart';
 
@@ -19,9 +21,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
+      extendBodyBehindAppBar: true,
       appBar: null,
       body: tabs[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.yellow,
+        unselectedItemColor: Colors.white,
         currentIndex: currentIndex,
         items: [
           BottomNavigationBarItem(
@@ -32,18 +38,16 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: const Icon(Icons.search_rounded),
             label: "Search",
+            
             backgroundColor: Theme.of(context).primaryColor,
           ),
           BottomNavigationBarItem(
             icon: const ImageIcon(AssetImage("assets/browse.png")),
             label: "Browse",
+            
             backgroundColor: Theme.of(context).primaryColor,
           ),
-          BottomNavigationBarItem(
-            icon: const ImageIcon( AssetImage("assets/watchlist.png")),
-            label: "Watch List",
-            backgroundColor: Theme.of(context).primaryColor,
-          ),
+         
         ],
         onTap: (index) {
           currentIndex = index;
@@ -54,5 +58,5 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  var tabs = [FirstScreen(), SecondScreen(), ThirdScreen(), FourthScreen()];
+  var tabs = [const FirstScreen(), const SecondScreen(), const ThirdScreen()];
 }

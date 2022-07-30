@@ -1,7 +1,9 @@
 
+// ignore_for_file: non_constant_identifier_names
+
 class Search {
   int? page;
-  List<Results>? results;
+  List<ResultsSearch>? results;
   int ?totalPages;
   int ?totalResults;
   int? status_code;
@@ -23,7 +25,7 @@ class Search {
       page = json["page"];
     }
     if(json["results"] is List) {
-      results = json["results"]==null ? null : (json["results"] as List).map((e)=>Results.fromJson(e)).toList();
+      results = json["results"]==null ? null : (json["results"] as List).map((e)=>ResultsSearch.fromJson(e)).toList();
     }
     if(json["total_pages"] is int) {
       totalPages = json["total_pages"];
@@ -48,7 +50,7 @@ class Search {
   }
 }
 
-class Results {
+class ResultsSearch {
   bool ?adult;
   String? backdropPath;
   List<int>? genreIds;
@@ -64,9 +66,9 @@ class Results {
   double? voteAverage;
   int ?voteCount;
 
-  Results({this.adult, this.backdropPath, this.genreIds, this.id, this.originalLanguage, this.originalTitle, this.overview, this.popularity, this.posterPath, this.releaseDate, this.title, this.video, this.voteAverage, this.voteCount});
+  ResultsSearch({this.adult, this.backdropPath, this.genreIds, this.id, this.originalLanguage, this.originalTitle, this.overview, this.popularity, this.posterPath, this.releaseDate, this.title, this.video, this.voteAverage, this.voteCount});
 
-  Results.fromJson(Map<String, dynamic> json) {
+  ResultsSearch.fromJson(Map<String, dynamic> json) {
     if(json["adult"] is bool) {
       adult = json["adult"];
     }
